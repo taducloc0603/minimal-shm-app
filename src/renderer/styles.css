@@ -1,0 +1,189 @@
+:root {
+      --bg: #f3f5fb;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --danger: #ef4444;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg, #eef2ff 0%, var(--bg) 240px);
+      color: var(--text);
+      padding: 28px;
+    }
+
+    button {
+      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    #listConfigs {
+      max-width: 980px;
+      margin: 0 auto;
+      min-height: 80px;
+      padding: 0;
+      color: var(--muted);
+    }
+
+    #listConfigs:empty::before {
+      content: "Chưa có dữ liệu cấu hình.";
+    }
+
+    .config-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .active-panel {
+      margin: 0;
+      background: #fff;
+      border: 1px solid #d2dfee;
+      border-radius: 20px;
+      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.08);
+      padding: 18px;
+    }
+
+    .active-panel h3 {
+      margin: 0 0 10px;
+      font-size: 48px;
+      line-height: 1;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+
+    .active-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .active-actions {
+      display: inline-flex;
+      border: 1px solid #cbd5e1;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .btn-toggle {
+      border: 0;
+      border-radius: 0;
+      padding: 10px 20px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #475569;
+      background: transparent;
+    }
+
+    .btn-toggle + .btn-toggle {
+      border-left: 1px solid #cbd5e1;
+    }
+
+    .btn-toggle.is-active[data-value="START"] {
+      background: #16a34a;
+      color: #fff;
+    }
+
+    .btn-toggle.is-active[data-value="END"] {
+      background: #dc2626;
+      color: #fff;
+    }
+
+    .san-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 20px;
+    }
+
+    .san-table th,
+    .san-table td {
+      border: 1px solid #cedcf0;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .san-table th:first-child,
+    .san-table td:first-child {
+      width: 220px;
+      min-width: 220px;
+      max-width: 220px;
+    }
+
+    .san-table thead th {
+      background: #eff6ff;
+      color: #1e3a8a;
+    }
+
+    .row-label {
+      text-align: left !important;
+      font-weight: 700;
+      color: #334155;
+      background: #f8fafc;
+      min-width: 140px;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, .35);
+      backdrop-filter: blur(2px);
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loading-box {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #bfdbfe;
+      border-top-color: #2563eb;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 720px) {
+      body { padding: 14px; }
+      .active-panel h3 { font-size: 28px; }
+      .btn-toggle { font-size: 14px; padding: 8px 12px; }
+      .san-table { font-size: 14px; }
+      .san-table th,
+      .san-table td { padding: 9px; }
+      .san-table th:first-child,
+      .san-table td:first-child {
+        width: 120px;
+        min-width: 120px;
+        max-width: 120px;
+      }
+    }
