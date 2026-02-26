@@ -303,10 +303,17 @@ function startQuoteReader(idx) {
     return;
   }
 
-  stopQuoteReader(idx);
+  delete activeReadersByIdx[idx];
 
   appState.runStateByIdx[idx] = "START";
-  appState.quoteTableByIdx[idx] = buildEndCellsForConfig(config);
+  const previousQuoteTable = appState.quoteTableByIdx[idx] || {};
+  const nextQuoteTable = buildEndCellsForConfig(config);
+  mapNames.forEach((name) => {
+    if (previousQuoteTable[name]) {
+      nextQuoteTable[name] = previousQuoteTable[name];
+    }
+  });
+  appState.quoteTableByIdx[idx] = nextQuoteTable;
 
   const metricsByMap = {};
   mapNames.forEach((name) => {
