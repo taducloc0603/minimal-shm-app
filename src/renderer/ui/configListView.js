@@ -118,6 +118,8 @@ export function createConfigListView({ listEl, state, onActiveToggle, onRunState
       const sans = normalizeSans(it.sans);
       const runState = state.runStateByIdx[idx] || "END";
       const quoteByMap = state.quoteTableByIdx[idx] || {};
+      const { gapBuy, gapSell } = getGapValues(sans, quoteByMap, it?.point);
+      const gapValueColSpan = Math.max(1, sans.length || 1);
       const headerCols = sans.length
         ? sans.map((s) => `<th>${escapeHtml(s)}</th>`).join("")
         : "<th>(chưa có sàn)</th>";
@@ -185,6 +187,14 @@ export function createConfigListView({ listEl, state, onActiveToggle, onRunState
               <tr>
                 <td class="row-label">Status</td>
                 ${makeRowCells("status")}
+              </tr>
+              <tr>
+                <td class="row-label">GAP_BUY</td>
+                <td class="gap-value-cell" colspan="${gapValueColSpan}">${escapeHtml(formatGapValue(gapBuy))}</td>
+              </tr>
+              <tr>
+                <td class="row-label">GAP_SELL</td>
+                <td class="gap-value-cell" colspan="${gapValueColSpan}">${escapeHtml(formatGapValue(gapSell))}</td>
               </tr>
             </tbody>
           </table>
